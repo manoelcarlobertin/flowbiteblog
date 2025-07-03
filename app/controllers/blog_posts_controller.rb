@@ -1,4 +1,5 @@
 class BlogPostsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :set_blog_post, only: %i[ show edit update destroy ]
 
   def index
@@ -38,10 +39,14 @@ class BlogPostsController < ApplicationController
   end
 
   private
+  def record_not_found
+    flash[:alert] = "Conteúdo não encontrado."
+    redirect_to root_path
+  end
+
   def set_blog_post
-    # esse modo logo abaixo também funciona,localhost:3000/b/1
+    # esse modo logo abaixo também funciona digitando,localhost:3000/b/1
     @blog_post = BlogPost.friendly.find(params.expect(:id))
-    # ou usar esse q funciona tbm "@blog_post = BlogPost.find_by!(slug: params[:id])"
   end
 
   def blog_post_params
