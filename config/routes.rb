@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   # g scaffold criou esses recursos (CRUD) abaixo:
   resources :blog_posts, path: "b"
   # colocou para mostrar "localhost:3000/b/1" na URL "AMIGÁVEL"
