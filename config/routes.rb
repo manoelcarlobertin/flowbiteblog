@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # g scaffold criou esses recursos (CRUD) abaixo:
   resources :blog_posts
   # Defines the root path route ("/")
   root "blog_posts#index"
