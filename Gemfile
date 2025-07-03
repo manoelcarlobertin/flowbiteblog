@@ -69,3 +69,5 @@ end
 gem "devise", "~> 4.9"
 
 gem "tailwind_devise"
+
+gem "simple_form"
