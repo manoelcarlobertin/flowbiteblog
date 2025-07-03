@@ -1,13 +1,37 @@
-<% content_for :title, "Showing blog post" %>
-
+<% content_for :title, @blog_post.title %>
 <div class="md:w-2/3 w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+
+  <% content_for :head do %>
+    <meta property="og:title" content="<%= @blog_post.title %>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%#= @blog_post.meta_image.url if @blog_post.meta_image.attached? %>" />
+    <meta name="description" content="<%= @blog_post.meta_description %>">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@blogapp" />
+    <meta name="twitter:title" content="<%= @blog_post.title %>>" />
+    <meta name="twitter:description" content="<%= @blog_post.meta_description %>" />
+    <meta name="twitter:image" content="<%#= @blog_post.meta_image.url if @blog_post.meta_image.attached? %>" />
   <% end %>
 
-  <h1 class="font-bold text-4xl">Detalhes do Conteúdo</h1>
+    <div class="flex gap-2 mb-4">
+      <%= link_to "Listar Conteúdos", blog_posts_path, class: "text-xl text-gray-900 hover:underline" %>
+      <%= link_to "> #{@blog_post.title}", @blog_post, class: "text-xl text-gray-900 hover:underline" %>
+    </div>
 
-  <%= render @blog_post %>
+  <div class="flex flex-col w-full">
+    <%= image_tag(@blog_post.banner_image, class: "w-full h-64 object-cover" ) if @blog_post.banner_image.attached? %>
+
+    <h6 class="font-bold text-1xl">Detalhes do Conteúdo</h6>
+
+    <div class="my-8 flex flex-col gap-4">
+      <div>
+        <%= @blog_post.body %>
+      </div>
+      <span> Tags: <%= @blog_post.tags %> </span>
+    </div>
+  </div>
 
   <%= link_to "Alterar", edit_blog_post_path(@blog_post), class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
   <%= link_to "Cancelar", blog_posts_path, class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
