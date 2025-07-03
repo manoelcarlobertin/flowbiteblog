@@ -39,7 +39,9 @@ class BlogPostsController < ApplicationController
 
   private
   def set_blog_post
-    @blog_post = BlogPost.find_by!(slug: params[:id])
+    # esse modo logo abaixo também funciona,localhost:3000/b/1
+    @blog_post = BlogPost.friendly.find(params.expect(:id))
+    # ou usar esse q funciona tbm "@blog_post = BlogPost.find_by!(slug: params[:id])"
   end
 
   def blog_post_params
