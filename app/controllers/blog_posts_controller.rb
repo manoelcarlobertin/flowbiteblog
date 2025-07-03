@@ -1,5 +1,6 @@
 class BlogPostsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  before_action :authenticate_admin!, except: %i[ index show ]
   before_action :set_blog_post, only: %i[ show edit update destroy ]
 
   def index
