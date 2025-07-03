@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # g scaffold criou esses recursos (CRUD) abaixo:
-  resources :blog_posts
-  # Defines the root path route ("/")
+  resources :blog_posts, path: "b"
+  # colocou para mostrar "localhost:3000/b/1" na URL "AMIGÁVEL"
   root "blog_posts#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
