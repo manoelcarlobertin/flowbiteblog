@@ -5,14 +5,14 @@
     <meta property="og:title" content="<%= @blog_post.title %>" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="<%= request.original_url %>" />
-    <meta property="og:image" content="<%#= @blog_post.meta_image.url if @blog_post.meta_image.attached? %>" />
+    <meta property="og:image" content="<%= url_for(@blog_post.meta_image) if @blog_post.meta_image.attached? %>" />
     <meta name="description" content="<%= @blog_post.meta_description %>">
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@blogapp" />
     <meta name="twitter:title" content="<%= @blog_post.title %>>" />
     <meta name="twitter:description" content="<%= @blog_post.meta_description %>" />
-    <meta name="twitter:image" content="<%#= @blog_post.meta_image.url if @blog_post.meta_image.attached? %>" />
+    <meta name="twitter:image" content="<%= url_for(@blog_post.meta_image) if @blog_post.meta_image.attached? %>" />
   <% end %>
 
     <div class="flex gap-2 mb-4">
