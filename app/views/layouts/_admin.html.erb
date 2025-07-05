@@ -1,2 +1,2 @@
 <span> Adminstrador Logado > <%= current_admin.email %></span>
-<%= link_to "Sair", destroy_admin_session_path, method: :delete, class: "ml-2 text-blue-600 hover:underline" %>
+<%= button_to "Sair", destroy_admin_session_path, method: :delete, class: "ml-2 text-blue-600 hover:underline" %>
